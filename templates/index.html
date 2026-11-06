@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student PDF Data Extraction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/"><span class="brand-mark">S</span><span>Student<span class="brand-light">Extract</span></span></a><span class="top-note">PDF · TEXT · EXCEL</span></header>
+  <main class="page-wrap">
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> SMART DOCUMENT AUTOMATION</div>
+      <h1>Turn student PDFs into<br><span>organized data.</span></h1>
+      <p class="hero-copy">Upload a student details PDF. The system extracts the records and prepares downloadable Excel and text files in seconds.</p>
+    </section>
+    <section class="upload-card">
+      <div class="card-heading"><div><div class="step-label">YOUR WORKSPACE</div><h2>Upload your PDF</h2></div><div class="pdf-icon">PDF</div></div>
+      {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+      <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        <label class="drop-zone" for="pdf_file" id="dropZone">
+          <span class="upload-symbol">↑</span><strong id="fileTitle">Choose a PDF to get started</strong>
+          <span class="file-hint" id="fileHint">Drag and drop here, or browse files</span>
+          <span class="browse-button">Browse PDF</span>
+          <input type="file" name="pdf_file" id="pdf_file" accept="application/pdf,.pdf" required>
+        </label>
+        <div class="file-meta"><span>✓ PDF files only</span><span>Maximum size: 15 MB</span></div>
+        <button class="primary-button" type="submit"><span>Extract student details</span><span>→</span></button>
+      </form>
+      <div class="privacy-note"><span>◈</span> Your uploaded PDF is processed locally and is not retained after extraction.</div>
+    </section>
+    <section class="steps">
+      <div class="step"><span class="step-number">01</span><div><b>Upload</b><small>Select a student PDF</small></div></div>
+      <div class="step"><span class="step-number">02</span><div><b>Extract</b><small>Read and organize records</small></div></div>
+      <div class="step"><span class="step-number">03</span><div><b>Download</b><small>Get Excel and text files</small></div></div>
+    </section>
+    <p class="format-note">Expected fields: <b>Name</b>, <b>Roll Number</b>, <b>Department</b> and <b>Email</b>. Scanned image-only PDFs are not supported in this version.</p>
+  </main>
+  <footer>© 2026 Student PDF Data Extraction <span>Built with Python · Flask · PyMuPDF</span></footer>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body></html>
